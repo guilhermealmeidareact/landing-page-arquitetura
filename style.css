@@ -1,0 +1,332 @@
+/* --- RESET BÁSICO --- */
+/* Remove as margens padrão do navegador e facilita o cálculo de tamanhos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- CABEÇALHO --- */
+.cabecalho {
+    display: flex; /* Coloca a logo e o menu lado a lado */
+    justify-content: space-between; /* Empurra a logo pra esquerda e o menu pra direita */
+    align-items: center; /* Centraliza verticalmente */
+    padding: 20px 50px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    position: sticky; /* Faz o menu grudar no topo ao rolar a página */
+    top: 0;
+    z-index: 100; /* Garante que o menu fique sempre por cima de tudo */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.menu ul {
+    list-style: none; /* Remove as bolinhas da lista */
+    display: flex;
+    gap: 30px; /* Dá espaço entre os links do menu */
+}
+
+.menu a {
+    color: #ffffff;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #f39c12; /* Cor de destaque ao passar o mouse */
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Fundo escuro misturado com uma imagem (coloque a URL de uma imagem real depois) */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    color: #ffffff;
+    padding: 0 20px;
+}
+
+.hero-conteudo {
+    max-width: 800px; /* Impede que o texto fique largo demais em telas grandes */
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+/* --- BOTÃO (Call to Action) --- */
+.botao-cta {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #f39c12;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px; /* Deixa as bordas arredondadas */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.botao-cta:hover {
+    background-color: #e67e22; /* Escurece um pouco ao passar o mouse */
+    transform: scale(1.05); /* Aumenta o botão levemente */
+}
+
+/* --- SEÇÃO DE SERVIÇOS --- */
+.servicos {
+    padding: 80px 20px;
+    background-color: #f9f9f9; /* Um cinza bem clarinho para contrastar com a Hero */
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* O "auto" nas laterais centraliza o conteúdo na tela */
+}
+
+.servicos h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+}
+
+/* --- A LÓGICA DO CSS GRID --- */
+.grid-servicos {
+    display: grid;
+    /* A mágica acontece aqui: cria 3 colunas, cada uma ocupando 1 fração (1fr) do espaço disponível */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; /* Espaço exato entre os cards */
+}
+
+/* --- ESTILO DOS CARDS --- */
+.card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Sombra suave para dar profundidade */
+    transition: transform 0.3s, box-shadow 0.3s; /* Prepara a animação do hover */
+}
+
+/* O que acontece quando o mouse passa por cima do card */
+.card:hover {
+    transform: translateY(-10px); /* Faz o card "flutuar" 10px para cima */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Deixa a sombra mais forte */
+}
+
+.icone {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #666666;
+    line-height: 1.6;
+}
+
+/* --- RESPONSIVIDADE (O Segredo do Júnior) --- */
+/* Esta regra só é ativada se a tela do usuário tiver 768px de largura ou menos (Celulares e Tablets) */
+@media (max-width: 768px) {
+    .grid-servicos {
+        /* Muda a grade de 3 colunas para apenas 1 coluna, empilhando os cards perfeitamente */
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* --- SEÇÃO DE PROJETOS (GALERIA) --- */
+.projetos {
+    padding: 80px 20px;
+    background-color: #ffffff; /* Fundo branco para destacar as fotos */
+    text-align: center;
+}
+
+.projetos h2 {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.subtitulo-projetos {
+    color: #666666;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+}
+
+/* --- GRADE DA GALERIA --- */
+.galeria {
+    display: grid;
+    /* Criando 3 colunas iguais novamente */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Um espaço um pouco menor entre as fotos fica mais elegante */
+}
+
+/* --- ESTILO DE CADA ITEM/FOTO --- */
+.item-galeria {
+    position: relative;
+    border-radius: 8px; /* Bordas levemente arredondadas */
+    /* O overflow hidden é o TRUQUE MÁGICO! Ele corta qualquer coisa que tentar sair da caixa. 
+       Isso faz com que, quando a imagem crescer, ela não invada o espaço da imagem do lado. */
+    overflow: hidden; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* Forçando a caixa a ter uma altura fixa para a grade ficar perfeita */
+    height: 300px; 
+}
+
+/* Configurando a tag <img> dentro do item da galeria */
+.item-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha a caixa sem ficar distorcida/esticada */
+    transition: transform 0.5s ease; /* A animação vai durar meio segundo e ser suave */
+}
+
+/* O efeito de zoom ao passar o mouse */
+.item-galeria:hover img {
+    transform: scale(1.1); /* Aumenta a imagem em 10% */
+}
+
+/* --- RESPONSIVIDADE DA GALERIA --- */
+/* Telas médias (Tablets e celulares deitados) - cai para 2 colunas */
+@media (max-width: 992px) {
+    .galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telas pequenas (Celulares em pé) - cai para 1 coluna */
+@media (max-width: 768px) {
+    .galeria {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- SEÇÃO DE CONTATO --- */
+.contato {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+}
+
+.contato-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Metade da tela para as informações */
+.contato-info {
+    flex: 1; 
+}
+
+.contato-info h2 {
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.contato-info p {
+    color: #666666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.contato-info ul {
+    list-style: none;
+}
+
+.contato-info li {
+    font-size: 1.1rem;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+/* Metade da tela para o formulário */
+.contato-form {
+    flex: 1;
+}
+
+.form-grupo {
+    margin-bottom: 20px;
+}
+
+.form-grupo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+/* Estilizando os campos de digitar */
+.form-grupo input,
+.form-grupo textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit; /* Puxa a fonte principal do site */
+    transition: border-color 0.3s;
+}
+
+/* Efeito quando o usuário clica para digitar */
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+    outline: none;
+    border-color: #f39c12; 
+}
+
+.contato-form button {
+    width: 100%; /* Faz o botão ocupar toda a largura do formulário */
+    cursor: pointer;
+    border: none;
+}
+
+/* --- RODAPÉ --- */
+.rodape {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.rodape p {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+}
+
+/* --- RESPONSIVIDADE DO CONTATO --- */
+@media (max-width: 768px) {
+    .contato-wrapper {
+        flex-direction: column; /* Empilha as informações e o formulário no celular */
+        padding: 30px 20px;
+    }
+}
