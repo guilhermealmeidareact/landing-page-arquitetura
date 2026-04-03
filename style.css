@@ -4,8 +4,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Isso aplica a fonte Montserrat na página inteira de uma vez */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    /* ... qualquer outra regra que você já tenha no body ... */
+}
+
 
 /* --- CABEÇALHO --- */
 .cabecalho {
@@ -21,9 +29,26 @@
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #f39c12;
+}
+
+.logo svg {
+    transition: transform 0.3s ease;
+}
+
+.logo:hover svg {
+    transform: scale(1.1);
 }
 
 .menu ul {
@@ -99,11 +124,6 @@
     text-align: center;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto; /* O "auto" nas laterais centraliza o conteúdo na tela */
-}
-
 .servicos h2 {
     font-size: 2.5rem;
     color: #1a1a1a;
@@ -149,6 +169,67 @@
     line-height: 1.6;
 }
 
+/*SEÇÃO DE PROJETOS (Títulos e Espaçamento)*/
+.projetos {
+    padding: 60px 20px;
+    background-color: #f4f4f9; /* Uma cor de fundo bem suave para a seção inteira */
+}
+
+.projetos h2, .subtitulo-projetos {
+    text-align: center;
+}
+
+.subtitulo-projetos {
+    margin-bottom: 40px;
+    color: #666;
+}
+
+/*A PRATELEIRA DA GALERIA (O CSS Grid)*/
+#container-da-galeria {
+    display: grid;
+    /* Essa é a linha de ouro: Cria colunas que se adaptam. 
+       Mínimo de 300px, máximo dividindo o espaço igualmente (1fr) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* O espaço entre os projetos */
+    max-width: 1200px; /* Trava o tamanho máximo para telas gigantes */
+    margin: 0 auto; /* Centraliza a galeria na tela */
+}
+
+/*OS CARDS DOS PROJETOS Injetados pelo JS*/
+.card-projeto {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden; /* Garante que a foto não vaze das bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Prepara para a animação */
+}
+
+/* O efeitinho de levantar quando o mouse passa por cima */
+.card-projeto:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/*IMAGENS E TEXTOS DENTRO DO CARD*/
+.card-projeto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Corta a imagem perfeitamente sem amassar */
+}
+
+.card-projeto h2 {
+    font-size: 1.4rem;
+    margin: 20px 20px 5px;
+    color: #333;
+    text-align: left; /* Reseta o alinhamento central lá de cima */
+}
+
+.card-projeto p {
+    margin: 0 20px 15px;
+    color: #777;
+    font-size: 0.95rem;
+}
+
 /* --- RESPONSIVIDADE (O Segredo do Júnior) --- */
 /* Esta regra só é ativada se a tela do usuário tiver 768px de largura ou menos (Celulares e Tablets) */
 @media (max-width: 768px) {
@@ -156,58 +237,6 @@
         /* Muda a grade de 3 colunas para apenas 1 coluna, empilhando os cards perfeitamente */
         grid-template-columns: 1fr; 
     }
-}
-
-/* --- SEÇÃO DE PROJETOS (GALERIA) --- */
-.projetos {
-    padding: 80px 20px;
-    background-color: #ffffff; /* Fundo branco para destacar as fotos */
-    text-align: center;
-}
-
-.projetos h2 {
-    font-size: 2.5rem;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-}
-
-.subtitulo-projetos {
-    color: #666666;
-    margin-bottom: 50px;
-    font-size: 1.1rem;
-}
-
-/* --- GRADE DA GALERIA --- */
-.galeria {
-    display: grid;
-    /* Criando 3 colunas iguais novamente */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px; /* Um espaço um pouco menor entre as fotos fica mais elegante */
-}
-
-/* --- ESTILO DE CADA ITEM/FOTO --- */
-.item-galeria {
-    position: relative;
-    border-radius: 8px; /* Bordas levemente arredondadas */
-    /* O overflow hidden é o TRUQUE MÁGICO! Ele corta qualquer coisa que tentar sair da caixa. 
-       Isso faz com que, quando a imagem crescer, ela não invada o espaço da imagem do lado. */
-    overflow: hidden; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    /* Forçando a caixa a ter uma altura fixa para a grade ficar perfeita */
-    height: 300px; 
-}
-
-/* Configurando a tag <img> dentro do item da galeria */
-.item-galeria img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem preencha a caixa sem ficar distorcida/esticada */
-    transition: transform 0.5s ease; /* A animação vai durar meio segundo e ser suave */
-}
-
-/* O efeito de zoom ao passar o mouse */
-.item-galeria:hover img {
-    transform: scale(1.1); /* Aumenta a imagem em 10% */
 }
 
 /* --- RESPONSIVIDADE DA GALERIA --- */
@@ -330,3 +359,4 @@
         padding: 30px 20px;
     }
 }
+
